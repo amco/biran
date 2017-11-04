@@ -10,7 +10,7 @@ This version will look for an `app_config.yml` file on `config` folder in the pr
 
 # TODO:
 
-[ ] Documentation
-[ ] Create config yml generators
-[ ] Add option for server config, right now only creates nginx vhost file and mysql database files for rails AR projects.
-[ ] More stuff
+- Documentation
+- Create config yml generators
+- Add option for server config, right now only creates nginx vhost file and mysql database files for rails AR projects.
+- More stuff
