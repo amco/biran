@@ -1,0 +1,17 @@
+PATH
+  remote: .
+  specs:
+    biran (0.1.0)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  biran!
+
+BUNDLED WITH
+   1.16.0.pre.3
