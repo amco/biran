@@ -1,28 +1,16 @@
 # Biran
-Short description and motivation.
 
-## Usage
-How to use my plugin.
+That guy that creates the config files for every new proyect.
 
-## Installation
-Add this line to your application's Gemfile:
+# Current State
 
-```ruby
-gem 'biran'
-```
+This is a simple proof of concept on the configuration files we use in most of our rails/ruby projects.
 
-And then execute:
-```bash
-$ bundle
-```
+This version will look for an `app_config.yml` file on `config` folder in the project root.
 
-Or install it yourself as:
-```bash
-$ gem install biran
-```
+# TODO:
 
-## Contributing
-Contribution directions go here.
-
-## License
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+[ ] Documentation
+[ ] Create config yml generators
+[ ] Add option for server config, right now only creates nginx vhost file and mysql database files for rails AR projects.
+[ ] More stuff
