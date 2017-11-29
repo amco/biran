@@ -1,6 +1,7 @@
 module Biran
   class ERBConfig
-    attr_reader :output_dir, :source_dir, :name, :extension, :erb_env, :config
+    attr_reader :output_dir, :source_dir, :name, :extension, :config
+    attr_accessor :bindings
 
     def initialize(config, name, extension, source, output)
       @name       = name
@@ -8,12 +9,11 @@ module Biran
       @config     = config
       @source_dir = source
       @output_dir = output
-      @erb_env    = build_erb_env.call
     end
 
     def save!
       File.open(File.join(output_dir, "#{name}#{extension}"), 'w') do |f|
-        f.print process_erb.result(erb_env)
+        f.print process_erb.result(build_erb_env.call)
       end
     end
 
@@ -29,7 +29,7 @@ module Biran
         @environment = Configurinator.env
         @app_config  = config
 
-        @app_config[:app][:bindings].each(&assign_instance_vars)
+        @bindings.each(&assign_instance_vars) unless @bindings.nil?
 
         # This pulls these variables into a binding object which is returned
         binding

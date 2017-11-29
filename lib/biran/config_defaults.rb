@@ -13,7 +13,8 @@ module Biran
           use_capistrano: configuration.use_capistrano,
           generate_tasks: configuration.tasks,
           db_config: configuration.db_config,
-          secrets: configuration.secrets
+          secrets: configuration.secrets,
+          bindings: configuration.bindings
         }
       }
     end
@@ -30,6 +31,10 @@ module Biran
     def app_shared_dir
       return File.join(app_base, 'shared') if use_capistrano?
       app_base
+    end
+
+    def bindings
+      app_config_defaults[:app][:bindings]
     end
 
     def config_dir

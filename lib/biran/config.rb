@@ -5,7 +5,7 @@ module Biran
     attr_reader :config_filename, :local_config_filename, :db_config_file_name,
                   :secrets_filename, :config_dirname, :root_path, :shared_dir,
                   :use_capistrano, :tasks, :db_config, :secrets, :root_path,
-                  :app_env
+                  :app_env, :app_setup_blocks, :bindings
 
     def app_env
       return @app_env if @app_env
@@ -51,6 +51,14 @@ module Biran
 
     def secrets
       @secrets ||= {}
+    end
+
+    def app_setup_blocks
+      @app_setup_blocks ||= %i[app].freeze
+    end
+
+    def bindings
+      @bindings ||= %i[db_config]
     end
 
     def root_path
