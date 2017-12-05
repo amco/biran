@@ -42,7 +42,9 @@ the list of things you can configure are:
 :db_config,
 :secrets
 :root_path,
-:app_env
+:app_env,
+:bindings,
+:app_setup_blocks
 ```
 
 TODO: add description on what each one does

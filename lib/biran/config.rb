@@ -53,6 +53,14 @@ module Biran
       @secrets ||= {}
     end
 
+    def app_setup_blocks
+      @app_setup_blocks ||= %i[app].freeze
+    end
+
+    def bindings
+      @bindings ||= %i[db_config]
+    end
+
     def root_path
       return @root_path if @root_path
       return Rails.root if defined? Rails

@@ -35,15 +35,18 @@ module Biran
 
     def create(name:, extension:, output_dir: nil)
       output_dir ||= config_dir
-      ERBConfig.new(config, name, extension, config_dir, output_dir).save!
+      generated_file = ERBConfig.new(filtered_config, name, extension, config_dir, output_dir)
+      generated_file.bindings = bindings
+      generated_file.save!
     end
 
     private
 
     def build_app_config
-      set_app_paths!
-
       app_config = {
+        app_root_dir: app_root,
+        app_shared_dir: app_shared_dir,
+        app_base_dir: app_base,
         local_config_file: local_config_file,
         secrets_file_path: secrets_file,
         vhost: config_vhost_dirs
@@ -79,12 +82,6 @@ module Biran
       raise "Missing config file: #{config_file}"
     end
 
-    def set_app_paths!
-      app_config_defaults[:app][:root_path] = app_root
-      app_config_defaults[:app][:shared_dir] = app_shared_dir
-      app_config_defaults[:app][:base_dir] = app_base
-    end
-
     def config_vhost_dirs
       {
         public_dir: File.join(app_root, 'public'),
@@ -114,6 +111,10 @@ module Biran
         secrets_file_contents = process_config_file app_config[:secrets_file_path]
       end
       secrets_file_contents
+    end
+
+    def filtered_config
+      @filtered_config ||= config.except(*configuration.app_setup_blocks)
     end
 
     def use_capistrano?
