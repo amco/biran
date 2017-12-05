@@ -46,7 +46,7 @@ module Biran
         File.join(app_shared_dir, configuration.config_dirname, configuration.local_config_filename)
     end
 
-    def db_config_path
+    def alt_db_config_file
       File.join(app_shared_dir, configuration.config_dirname, configuration.db_config_filename)
     end
 

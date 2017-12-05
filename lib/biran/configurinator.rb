@@ -60,9 +60,14 @@ module Biran
     end
 
     def build_db_config
-      config_file_exists = File.exist? db_config_path
-      db_config_file = config_file_exists ? db_config_path : default_db_config_file
-      process_config_file(db_config_file)
+      default_db_config = base_db_config
+      return default_db_config unless File.exist? alt_db_config_file
+      default_db_config.deep_merge! process_config_file(alt_db_config_file)
+    end
+
+    def base_db_config
+      return @base_db_config if @base_db_config
+      @base_db_config = process_config_file(default_db_config_file)
     end
 
     def app_config_defaults
