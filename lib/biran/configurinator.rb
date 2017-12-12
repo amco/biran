@@ -56,7 +56,7 @@ module Biran
       app_config[:secrets] = get_secret_contents(app_config)
       app_config[:db_config] = build_db_config
 
-      get_local_config app_config
+      app_config.deep_merge! local_config_file_contents
     end
 
     def build_db_config
@@ -95,18 +95,10 @@ module Biran
       }
     end
 
-    def get_local_config(app_config)
-      if local_config_file_exists? app_config
-        app_config.deep_merge! process_config_file(app_config[:local_config_file])
-      end
-      app_config
-    end
-
-    def local_config_file_exists?(app_config)
-      local_rails_config_file = File.join(configuration.root_path, configuration.local_config_filename)
-
-      File.exist?(app_config[:local_config_file]) ||
-        File.exist?(app_config[:local_config_file] = local_rails_config_file)
+    def local_config_file_contents
+      return @local_config_contents if @local_config_contents
+      return @local_config_conents = {} unless File.exists? local_config_file
+      @local_config_contents = process_config_file(local_config_file)
     end
 
     def get_secret_contents(app_config)

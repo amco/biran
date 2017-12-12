@@ -42,7 +42,7 @@ module Biran
     end
 
     def local_config_file
-      ENV['SITE_CONFIG_FILE'] ||
+      ENV['LOCAL_CONFIG_FILE'] ||
         File.join(app_shared_dir, configuration.config_dirname, configuration.local_config_filename)
     end
 
