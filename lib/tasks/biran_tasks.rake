@@ -9,10 +9,10 @@ namespace :config do
 
   task :generate_with_deps
 
-  config.config_tasks.each do |task_name, ext|
-    desc %(Generate the #{task_name}#{ext} config file)
+  config.config_tasks.each do |task_name, options|
+    desc %(Generate the #{task_name}#{options.fetch(:extension, '')} config file)
     task task_name do
-      config.create name: task_name, extension: ext
+      config.create name: task_name, **options
     end
   end
 

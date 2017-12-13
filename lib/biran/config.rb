@@ -47,8 +47,8 @@ module Biran
 
     def config_tasks
       {
-        vhost: '.conf',
-        database: '.yml'
+        vhost: {extension: '.conf'},
+        database: {extension: '.yml'}
       }
     end
 
