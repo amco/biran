@@ -33,6 +33,10 @@ module Biran
       config.fetch(:app, {}).fetch(:generate_tasks, [])
     end
 
+    def config_tasks
+      config.fetch(:app, {}).fetch(:config_tasks, configuration.config_tasks)
+    end
+
     def create(name:, extension:, output_dir: nil)
       output_dir ||= config_dir
       generated_file = ERBConfig.new(filtered_config, name, extension, config_dir, output_dir)

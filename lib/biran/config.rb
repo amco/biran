@@ -45,6 +45,13 @@ module Biran
       @tasks ||= %i[vhost database]
     end
 
+    def config_tasks
+      {
+        vhost: '.conf',
+        database: '.yml'
+      }
+    end
+
     def db_config
       @db_config ||= {}
     end

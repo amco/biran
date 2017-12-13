@@ -9,18 +9,11 @@ namespace :config do
 
   task :generate_with_deps
 
-  desc 'Generate the vhost config file'
-  task :vhost do
-    config.create name: :vhost, extension: '.conf'
+  config.config_tasks.each do |task_name, ext|
+    desc %(Generate the #{task_name}#{ext} config file)
+    task task_name do
+      config.create name: task_name, extension: ext
+    end
   end
 
-  desc 'Generate the database.yml file'
-  task :database do
-    config.create name: :database, extension: '.yml'
-  end
-
-  desc 'Generate the settings.yml file'
-  task :settings do
-    config.create name: :settings, extension: '.yml'
-  end
 end
