@@ -34,7 +34,17 @@ module Biran
     end
 
     def config_tasks
-      config.fetch(:app, {}).fetch(:config_tasks, configuration.config_tasks)
+      return @config_tasks if @config_tasks
+      config_files_task_list = config.fetch(:app, {}).fetch(:config_tasks, configuration.config_tasks)
+      config_files_task_list.tap do |tasks_list|
+        tasks_list.each do |task,_|
+          tasks_list[task] ||=  {extension: ''}
+          ext = tasks_list[task].fetch(:extension, '').strip
+          ext.prepend('.') unless ext.starts_with?('.') || ext.empty?
+          tasks_list[task][:extension] = ext
+        end
+      end
+      @config_tasks = config_files_task_list
     end
 
     def create(name:, extension:, output_dir: nil)
