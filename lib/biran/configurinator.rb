@@ -34,17 +34,9 @@ module Biran
     end
 
     def config_tasks
-      return @config_tasks if @config_tasks
-      config_files_task_list = config.fetch(:app, {}).fetch(:config_tasks, configuration.config_tasks)
-      config_files_task_list.tap do |tasks_list|
-        tasks_list.each do |task,_|
-          tasks_list[task] ||=  {extension: ''}
-          ext = tasks_list[task].fetch(:extension, '').strip
-          ext.prepend('.') unless ext.starts_with?('.') || ext.empty?
-          tasks_list[task][:extension] = ext
-        end
-      end
-      @config_tasks = config_files_task_list
+      @config_tasks ||= config.fetch(:app, {})
+        .fetch(:config_tasks, configuration.config_tasks)
+        .tap { |tasks_list| tasks_list.each &sanitize_config_tasks(tasks_list) }
     end
 
     def create(name:, extension:, output_dir: nil)
@@ -121,6 +113,15 @@ module Biran
         secrets_file_contents = process_config_file app_config[:secrets_file_path]
       end
       secrets_file_contents
+    end
+
+    def sanitize_config_tasks tasks_list
+      lambda do |task, _|
+        tasks_list[task] ||=  {extension: ''}
+        ext = tasks_list[task].fetch(:extension, '').strip
+        ext.prepend('.') unless ext.starts_with?('.') || ext.empty?
+        tasks_list[task][:extension] = ext
+      end
     end
 
     def filtered_config
