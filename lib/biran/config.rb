@@ -45,7 +45,7 @@ module Biran
       @tasks ||= %i[vhost database]
     end
 
-    def config_tasks
+    def config_generate_files
       {
         vhost: {extension: '.conf'},
         database: {extension: '.yml'}
