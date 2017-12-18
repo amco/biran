@@ -3,7 +3,7 @@ namespace :config do
 
   desc 'Generate new config files'
   task :generate do
-    Rake::Task['config:generate_with_deps'].enhance config.tasks
+    Rake::Task['config:generate_with_deps'].enhance config.tasks_list
     Rake::Task['config:generate_with_deps'].invoke
   end
 

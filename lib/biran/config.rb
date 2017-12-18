@@ -4,7 +4,7 @@ module Biran
 
     attr_reader :config_filename, :local_config_filename, :db_config_file_name,
                   :secrets_filename, :config_dirname, :root_path, :shared_dir,
-                  :use_capistrano, :tasks, :db_config, :secrets, :root_path,
+                  :use_capistrano, :db_config, :secrets, :root_path,
                   :app_env
 
     def app_env
@@ -39,10 +39,6 @@ module Biran
 
     def use_capisrano
       @use_capistrano ||= false
-    end
-
-    def tasks
-      @tasks ||= %i[vhost database]
     end
 
     def config_generate_files

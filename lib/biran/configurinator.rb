@@ -29,8 +29,8 @@ module Biran
       @config = build_app_config
     end
 
-    def tasks
-      config.fetch(:app, {}).fetch(:generate_tasks, [])
+    def tasks_list
+      config_generate_files.keys
     end
 
     def config_generate_files
