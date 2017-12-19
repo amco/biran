@@ -29,13 +29,13 @@ module Biran
       @config = build_app_config
     end
 
-    def tasks_list
+    def tasks_from_files
       config_generate_files.keys
     end
 
-    def config_generate_files
+    def files_to_generate
       @config_generate_files ||= config.fetch(:app, {})
-        .fetch(:config_generate_files, configuration.config_generate_files)
+        .fetch(:files_to_generate, configuration.files_to_generate)
         .tap { |files_list| files_list.each &sanitize_config_files(files_list) }
     end
 

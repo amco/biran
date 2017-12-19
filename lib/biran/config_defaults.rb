@@ -11,7 +11,7 @@ module Biran
           shared_dir: configuration.shared_dir,
           base_dir: configuration.base_dir,
           use_capistrano: configuration.use_capistrano,
-          config_generate_files: configuration.config_generate_files,
+          files_to_generate: configuration.files_to_generate,
           db_config: configuration.db_config,
           secrets: configuration.secrets,
           bindings: configuration.bindings
