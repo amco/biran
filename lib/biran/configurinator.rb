@@ -29,7 +29,7 @@ module Biran
       @config = build_app_config
     end
 
-    def tasks_from_files
+    def file_tasks
       config_generate_files.keys
     end
 
