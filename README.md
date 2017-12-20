@@ -82,9 +82,8 @@ the list of things you can configure are:
 :app_setup_blocks,
 :files_to_generate
 ```
-
-TODO: add description on what each one does
-## config_filename
+## Options
+### config_filename
 
 **Type: string  
 Default: app\_config.yml  
@@ -92,7 +91,7 @@ Available in:** environment variable, initializer
 
 Set the name of the file that is used to hold configuration values for the app and any template files. File should be found in the `config` directory of your app.
 
-## local_config_filename
+### local_config_filename
 **Type: string  
 Default: local\_config.yml  
 Available in: environment variable, config_file, initializer**
@@ -100,42 +99,42 @@ Available in: environment variable, config_file, initializer**
 Sets the name of the file that can be used to override any values in the config file. Used to insert values you don’t want stored in the repo, like passwords.
 Uses same format as the main config file. Any value you enter will override the value from the config file
 
-## db_config_file_name
+### db_config_file_name
 **Type: string  
 Default: db\_config.yml  
 Available in: config file, initializer**
 
 Sets the name of the file that holds the default database configuration info used to generate files. This file is used for backwards compatibility.
 
-## secrets_filename
+### secrets_filename
 **Type: string  
 Default: secrets  
 Available in: config file, initializer**
 
 Generally no need to change, but here in case you want to. Default is `secrets.yml`
 
-## config_dirname
+### config_dirname
 **Type: string  
 Default: config  
 Available in: initializer**
 
 Generally no need to change, but here in case you want to change where config files are stored.
 
-## root_path
+### root_path
 **Type: string  
 Default: Rails.root in rails apps, ‘./’ in others  
 Available in: environment variable, config file, initializer**
 
 Biran assumes you will be using `Rails.root` in dev of course and will use that value unless something else is specified. If using capistrano, you will want to define a the root_path not including `current`. Biran will use this path to find the shared dir and the local config dir used to override any values.
 
-## shared_dir
+### shared_dir
 **Type: string  
 Default: shared  
 Available in: config file, initializer**
 
 Generally not needed, but can be used to override the shared dir value when using capistrano.
 
-## use_capistrano
+### use_capistrano
 **Type: string/boolean  
 Default: false  
 Available in: config file, initializer**
@@ -143,7 +142,7 @@ Available in: config file, initializer**
 When using Biran with capistrano, Biran will make certain path adjustments for you, including appending the `current` dir to the root path as well as assuming any override files are in the `shared/config` dir in the root path when using default values.
 
 
-## db_config
+### db_config
 **Type: hash  
 Default: ‘’  
 Available in: config file, initializer**
@@ -180,7 +179,7 @@ production:
     username: app_user
 ```
 
-## secrets
+### secrets
 **Type: hash  
 Default: ‘’  
 Availble in: config file, initializer**
@@ -193,14 +192,14 @@ defaults: &defaults
     secret_key_base: 123459876h
 ```
 
-## app_env
+### app_env
 **Type: string  
 Default: Rails.env if rails or ‘development’ in non rails  
 Availble in: config file, initializer**
 
 Generally not needed to specify unless you are not using rails or do not want to use `Rails.env` for lookups in config blocks.
 
-## bindings
+### bindings
 **Type: array  
 Default: db\_config  
 Available in: config file, initializer**
@@ -228,14 +227,14 @@ defaults: &defaults
     ssl_port: 443
     use_ssl: false
 ```
-## app_setup_blocks
+### app_setup_blocks
 **Type: array  
 Default: app  
 Available in: config file, initializer**
 
 Generally not needed to configure, but available. Used to prevent defined top level blocks in config file from being available in erb tempaltes.
 
-## files_to_generate
+### files_to_generate
 **Type: hash  
 Default:**  
 ```
