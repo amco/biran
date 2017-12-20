@@ -36,7 +36,7 @@ module Biran
     def config_tasks
       @config_tasks ||= config.fetch(:app, {})
         .fetch(:config_tasks, configuration.config_tasks)
-        .tap { |tasks_list| tasks_list.each &sanitize_config_tasks(tasks_list) }
+        .tap { |tasks_list| tasks_list.each(&sanitize_config_tasks(tasks_list)) }
     end
 
     def create(name:, extension:, output_dir: nil)

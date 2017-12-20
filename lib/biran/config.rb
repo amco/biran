@@ -2,15 +2,10 @@ module Biran
   class Config
     include Singleton
 
-    attr_reader :config_filename, :local_config_filename, :db_config_file_name,
-                  :secrets_filename, :config_dirname, :root_path, :shared_dir,
-                  :use_capistrano, :tasks, :db_config, :secrets, :root_path,
-                  :app_env
-
     def app_env
       return @app_env if @app_env
       return Rails.env if defined? Rails
-      'development'
+      @app_env = 'development'
     end
 
     def base_dir
@@ -71,7 +66,7 @@ module Biran
     def root_path
       return @root_path if @root_path
       return Rails.root if defined? Rails
-      './'
+      @root_path ||= './'
     end
   end
 end
