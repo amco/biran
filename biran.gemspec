@@ -15,7 +15,6 @@ Gem::Specification.new do |s|
   s.license     = "MIT"
 
   s.files = Dir["{app,config,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
-  s.test_files = Dir["test/**/*"]
 
   s.executables = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
   s.require_paths = ["lib"]
