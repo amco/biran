@@ -29,14 +29,14 @@ module Biran
       @config = build_app_config
     end
 
-    def tasks
-      config.fetch(:app, {}).fetch(:generate_tasks, [])
+    def file_tasks
+      config_generate_files.keys
     end
 
-    def config_tasks
-      @config_tasks ||= config.fetch(:app, {})
-        .fetch(:config_tasks, configuration.config_tasks)
-        .tap { |tasks_list| tasks_list.each &sanitize_config_tasks(tasks_list) }
+    def files_to_generate
+      @config_generate_files ||= config.fetch(:app, {})
+        .fetch(:files_to_generate, configuration.files_to_generate)
+        .tap { |files_list| files_list.each &sanitize_config_files(files_list) }
     end
 
     def create(name:, extension:, output_dir: nil)
@@ -115,12 +115,12 @@ module Biran
       secrets_file_contents
     end
 
-    def sanitize_config_tasks tasks_list
-      lambda do |task, _|
-        tasks_list[task] ||=  {extension: ''}
-        ext = tasks_list[task].fetch(:extension, '').strip
+    def sanitize_config_files files_list
+      lambda do |file, _|
+        files_list[file] ||=  {extension: ''}
+        ext = files_list[file].fetch(:extension, '').strip
         ext.prepend('.') unless ext.starts_with?('.') || ext.empty?
-        tasks_list[task][:extension] = ext
+        files_list[file][:extension] = ext
       end
     end
 
