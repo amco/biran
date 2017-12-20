@@ -38,11 +38,7 @@ module Biran
       @use_capistrano ||= false
     end
 
-    def tasks
-      @tasks ||= %i[vhost database]
-    end
-
-    def config_tasks
+    def files_to_generate
       {
         vhost: {extension: '.conf'},
         database: {extension: '.yml'}
