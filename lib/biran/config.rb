@@ -1,3 +1,5 @@
+require 'singleton'
+
 module Biran
   class Config
     include Singleton
