@@ -237,14 +237,14 @@ Generally not needed to configure, but available. Used to prevent defined top le
 
 ## files_to_generate
 **Type: hash  
-Default:
+Default:**  
 ```
 {
   vhost: {extension: '.conf'},
   database: {extension: '.yml'}
 }
 ```  
-Available in: config file, initializer**
+**Available in: config file, initializer**
 
 This config option defines which files you want to be available to generate as part of the config:generate task. Each file listed will get its own task and will be run when `rake config:generate` is run.
 The default config will generate `config/vhost.conf` and `config/database.yml`. By default, all files will be generated in the `config` directory. You can override this in the options.
