@@ -4,9 +4,9 @@ module Biran
   class Config
     include Singleton
 
-    attr_writer :config_filename, :local_config_filename, :db_config_file_name,
-                :secrets_filename, :config_dirname, :root_path, :use_capistrano,
-                :db_config, :secrets, :root_path, :app_env, :base_dir, :shared_dir
+    attr_writer :config_filename, :local_config_filename, :db_configfile_name,
+                :secrets_filename, :config_dirname, :use_capistrano,:db_config,
+                :secrets, :root_path, :app_env, :base_dir, :shared_dir
 
     attr_reader :shared_dir
 
