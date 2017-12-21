@@ -7,17 +7,19 @@ describe Biran do
   it { expect(subject).to be_kind_of Module }
   it { expect(subject).to respond_to :configure }
 
-  it 'app_env is configurable' do
-    subject.configure do |config|
-      config.app_env = 'test'
+  context 'configure' do
+    it 'app_env is configurable' do
+      subject.configure { |config| config.app_env = 'test' }
+      expect(described_class.config.app_env).to eq 'test'
     end
-    expect(described_class.config.app_env).to eq 'test'
+
+    it 'root_path is configurable' do
+      subject.configure { |config| config.root_path = 'path/to/root/' }
+      expect(described_class.config.root_path).to eq 'path/to/root/'
+    end
   end
 
-  it 'root_path is configurable' do
-    subject.configure do |config|
-      config.root_path = 'path/to/root/'
-    end
-    expect(described_class.config.root_path).to eq 'path/to/root/'
+  it 'extension for config tasks contain period' do
+    skip
   end
 end
