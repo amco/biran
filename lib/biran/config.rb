@@ -4,6 +4,11 @@ module Biran
   class Config
     include Singleton
 
+    attr_writer :config_filename, :local_config_filename, :db_config_file_name,
+                  :secrets_filename, :config_dirname, :root_path, :shared_dir,
+                  :use_capistrano, :db_config, :secrets, :root_path,
+                  :app_env
+
     def app_env
       return @app_env if @app_env
       return Rails.env if defined? Rails

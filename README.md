@@ -23,7 +23,7 @@ You can also set options in `config/app_config.yml` in the `app` block. This lis
 
 
 ```
-Biran.Configurinator.configure do |config|
+Biran.configure do |config|
   config.app_env = Rails.env
 end
 ```

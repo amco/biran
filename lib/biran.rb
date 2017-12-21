@@ -5,4 +5,8 @@ require 'biran/configurinator'
 require 'biran/railtie' if defined?(Rails)
 
 module Biran
+
+  def self.configure &blk
+    Configurinator.configure &blk
+  end
 end
