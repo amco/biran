@@ -8,4 +8,8 @@ module Biran
   def self.configure &blk
     Configurinator.configure &blk
   end
+
+  def self.config
+    Configurinator.config
+  end
 end

@@ -11,13 +11,13 @@ describe Biran do
     subject.configure do |config|
       config.app_env = 'test'
     end
-    expect(described_class::Config.instance.app_env).to eq 'test'
+    expect(described_class.config.app_env).to eq 'test'
   end
 
   it 'root_path is configurable' do
     subject.configure do |config|
       config.root_path = 'path/to/root/'
     end
-    expect(described_class::Config.instance.root_path).to eq 'path/to/root/'
+    expect(described_class.config.root_path).to eq 'path/to/root/'
   end
 end
