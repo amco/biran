@@ -17,4 +17,5 @@ describe Biran::Config do
   it { is_expected.to respond_to :app_setup_blocks }
   it { is_expected.to respond_to :bindings }
   it { is_expected.to respond_to :root_path }
+  it { is_expected.to respond_to :shared_dir }
 end

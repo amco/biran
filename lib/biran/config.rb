@@ -6,7 +6,9 @@ module Biran
 
     attr_writer :config_filename, :local_config_filename, :db_config_file_name,
                 :secrets_filename, :config_dirname, :root_path, :use_capistrano,
-                :db_config, :secrets, :root_path, :app_env, :base_dir
+                :db_config, :secrets, :root_path, :app_env, :base_dir, :shared_dir
+
+    attr_reader :shared_dir
 
     def app_env
       return @app_env if @app_env
