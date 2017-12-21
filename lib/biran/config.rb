@@ -38,7 +38,7 @@ module Biran
       @config_dirname ||= 'config'.freeze
     end
 
-    def use_capisrano
+    def use_capistrano
       @use_capistrano ||= false
     end
 
