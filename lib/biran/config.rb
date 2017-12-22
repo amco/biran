@@ -4,11 +4,11 @@ module Biran
   class Config
     include Singleton
 
-    attr_writer :config_filename, :local_config_filename, :db_configfile_name,
-                :secrets_filename, :config_dirname, :use_capistrano,:db_config,
-                :secrets, :root_path, :app_env, :base_dir, :shared_dir
+    attr_writer :config_filename, :local_config_filename, :db_config_filename,
+                :secrets_filename, :config_dirname, :use_capistrano, :db_config,
+                :secrets, :root_path, :app_env, :base_dir, :bindings, :app_setup_blocks
 
-    attr_reader :shared_dir
+    attr_accessor :shared_dir
 
     def app_env
       return @app_env if @app_env
