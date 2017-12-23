@@ -97,14 +97,24 @@ Default: local\_config.yml
 Available in: environment variable, config_file, initializer**
 
 Sets the name of the file that can be used to override any values in the config file. Used to insert values you don’t want stored in the repo, like passwords.
-Uses same format as the main config file. Any value you enter will override the value from the config file
+Uses same format as the main config file. Any value you enter will override the value from the config file.  
+For example, assuming default gem configuration and a staging environment, if you want to change the port number that nginx is running the site on, you could use a `config/local_config.yml` with the following contents:
+```
+defaults: &defaults
+  vhost:
+    <<: *vhost_defaults
+    port: 8080
+
+staging:
+  <<: *defaults
+```
 
 ### db_config_file_name
 **Type: string  
 Default: db\_config.yml  
 Available in: config file, initializer**
 
-Sets the name of the file that holds the default database configuration info used to generate files. This file is used for backwards compatibility.
+Sets the name of the file that holds the default database configuration info used to generate files. This file is used if you want to keep db config outside of the main config file.
 
 ### secrets_filename
 **Type: string  
@@ -118,14 +128,14 @@ Generally no need to change, but here in case you want to. Default is `secrets.y
 Default: config  
 Available in: initializer**
 
-Generally no need to change, but here in case you want to change where config files are stored.
+Generally no need to change, but here in case you want to change the default of where templates and generated config files are stored.
 
 ### root_path
 **Type: string  
 Default: Rails.root in rails apps, ‘./’ in others  
 Available in: environment variable, config file, initializer**
 
-Biran assumes you will be using `Rails.root` in dev of course and will use that value unless something else is specified. If using capistrano, you will want to define a the root_path not including `current`. Biran will use this path to find the shared dir and the local config dir used to override any values.
+Biran assumes you will be using `Rails.root` in dev of course and will use that value unless something else is specified. If using capistrano, you will want to define the root_path not including `current`. Biran will use this path to find the shared dir and the local config dir used to override any values.
 
 ### shared_dir
 **Type: string  
@@ -207,7 +217,7 @@ Available in: config file, initializer**
 Used to setup some shortcuts for use in the erb templates. Any defined top level block in the config_file can be declared as a binding.
 Useful to have shorter variables in templates. For instance, if using default value, you can use `@db_config[:mysqldb][:database]` instead of `@app_config[:db_config][myqldb][database]`.
 Ex.
-With the following config snippet as an example, you can use `@vhost[:host]` instead of `@app_config[:vhost][;host]``
+With the following config snippet as an example, you can use `@vhost[:host]` instead of `@app_config[:vhost][:host]`
 ```
 defaults: &defaults
   app: &app_defaults
@@ -218,7 +228,7 @@ defaults: &defaults
       - vhost
     files_to_generate:
       vhost:
-        extension: 'conf'
+        extension: '.conf'
       database:
         extension: '.yml'
   vhost: &vhost_defaults
