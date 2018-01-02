@@ -1,0 +1,13 @@
+cache: bundler
+sudo: false
+language: ruby
+rvm:
+  - 2.3.5
+  - 2.4.0
+branches:
+  only:
+    - /^\d+\.\d+$/
+    - master
+notifications:
+  slack:
+    secure: "g0PcvpfWvs6NgGh72ypn2tNJR06Gi9k1uTABQGny1JFjiXlRWEqcyg7HBunyRRNSzQo+/c/yevjHR3DKmyoERm05/OPwS6Qh5WE7iwi8fX9ulEgrP6Rceg8/EXDMJGkScokN4Zde3ziiOhlgDMgzzglsohG67NjIlyjHTIXDZt7exh/NRZvH1V+1MDRVoaTSvsw3b4d6XW2raRiIxmgQoB3M4o4bIrWltrRyqezW3DKU6+di/F+LsZzAx/mjLe7GxFKp/MDwiEYy6F6oMEpaJFZM5issK6sGuWze2TUNyZYLLeuqDH26GLMT2qVNSFn+Jk7XWRTbIDg8Wl+frBr9WHYF2pjqY3drHljG84YBjDwKCJZw5vR6RX6Oa9iaqXVZycjv9bg9KMFrBn+eGSQgQwUGY6UUWFcykNFXRQGccsnQnsNsjieQp/bzwRFxMCOd7HQzhogrVafzB8evwhbFDyAxatYAcldDi13XJN/WM6shjM/2zG6y1bb1lANT4oxO7NXdKzApl2bmDKEhqZ1oSsh8uVR87EjPLYBW9ky9bfa1A2HHsf/J82cRawPevWbY23kEdw7yEQgo4LQ5f9EdIdgydcHXUwHmpV2FVmOp3V/Rj2uhT4VckMlJ3+i6vNcRziz+h1inmyDLeO0aaBn5c2emMfuC6L5lGhNc6CMzmmc="
