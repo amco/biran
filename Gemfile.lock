@@ -44,6 +44,7 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    ansi (1.5.0)
     arel (7.1.4)
     builder (3.2.3)
     concurrent-ruby (1.0.5)
@@ -54,6 +55,7 @@ GEM
       activesupport (>= 4.2.0)
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
+    json (2.1.0)
     loofah (2.1.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -105,6 +107,9 @@ GEM
     rspec-mocks (3.7.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.7.0)
+    rspec-ontap (0.3.1)
+      rspec
+      tapout
     rspec-support (3.7.0)
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
@@ -113,6 +118,9 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    tapout (0.4.5)
+      ansi
+      json
     thor (0.20.0)
     thread_safe (0.3.6)
     tzinfo (1.2.4)
@@ -129,6 +137,8 @@ DEPENDENCIES
   bundler
   rails
   rspec
+  rspec-ontap
+  tapout
 
 BUNDLED WITH
    1.16.0

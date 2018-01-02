@@ -23,4 +23,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rails"
   s.add_development_dependency "bundler"
   s.add_development_dependency 'rspec'
+  s.add_development_dependency 'tapout'
+  s.add_development_dependency 'rspec-ontap'
 end
