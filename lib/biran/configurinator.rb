@@ -30,13 +30,13 @@ module Biran
     end
 
     def file_tasks
-      config_generate_files.keys
+      files_to_generate.keys
     end
 
     def files_to_generate
-      @config_generate_files ||= config.fetch(:app, {})
+      @files_to_generate ||= config.fetch(:app, {})
         .fetch(:files_to_generate, configuration.files_to_generate)
-        .tap { |files_list| files_list.each &sanitize_config_files(files_list) }
+        .tap { |files_list| files_list.each(&sanitize_config_files(files_list)) }
     end
 
     def create(name:, extension:, output_dir: nil)
