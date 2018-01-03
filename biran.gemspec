@@ -7,8 +7,8 @@ require "biran/version"
 Gem::Specification.new do |s|
   s.name        = "biran"
   s.version     = Biran::VERSION
-  s.authors     = ["javierg"]
-  s.email       = ["javierg@amcoonline.net"]
+  s.authors     = ["javierg", "brlanier", "seancookr"]
+  s.email       = ["amcoit@amcoonline.net"]
   s.homepage    = "https://github.com/amco/biran"
   s.summary     = "Helper for generating config generate tasks."
   s.description = "Biran is the guy that will help you generate config files for your rail app."
