@@ -17,11 +17,15 @@ end
 require 'bundler/gem_tasks'
 require 'rake/testtask'
 
-Rake::TestTask.new(:test) do |t|
-  t.libs << 'lib'
-  t.libs << 'test'
-  t.pattern = 'test/**/*_test.rb'
-  t.verbose = false
-end
+begin
+  require 'rspec/core/rake_task'
+  task("spec").clear
 
-task default: :test
+  RSpec::Core::RakeTask.new(:spec) do |t|
+    t.rspec_opts = "--format RSpec::TapY | tapout runtime"
+  end
+
+  task :default => :spec
+rescue LoadError
+  raise 'No rspec available'
+end

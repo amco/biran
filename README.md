@@ -59,7 +59,7 @@ production:
 
 Initializer example:
 ```
-Biran.Configurinator.configure do |config|
+Biran.configure do |config|
   config.app_env = Rails.env
 end
 ```
