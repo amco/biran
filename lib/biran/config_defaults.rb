@@ -7,7 +7,7 @@ module Biran
     def app_defaults_init
       {
         app: {
-          root_path: configuration.root_path,
+          base_path: configuration.base_path,
           shared_dir: configuration.shared_dir,
           base_dir: configuration.base_dir,
           use_capistrano: configuration.use_capistrano,

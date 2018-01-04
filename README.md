@@ -25,7 +25,7 @@ Config file example:
 ```
 defaults: &defaults
   app: &app_defaults
-    root_path: <%= Rails.root %>
+    base_path: <%= Rails.root %>
     use_capistrano: false
     bindings:
       - db_config
@@ -43,14 +43,14 @@ staging:
   <<: *defaults
   app:
     <<: *app_defaults
-    root_path: '/srv/my_app'
+    base_path: '/srv/my_app'
     use_capistrano: true
 
 production:
   <<: *defaults
   app:
     <<: *app_defaults
-    root_path: '/srv/my_app'
+    base_path: '/srv/my_app'
     use_capistrano: true
   vhost:
     <<: *vhost_defaults
@@ -72,7 +72,7 @@ the list of things you can configure are:
 :db_config_file_name,
 :secrets_filename,
 :config_dirname,
-:root_path,
+:base_path,
 :shared_dir,
 :use_capistrano,
 :db_config,
@@ -130,12 +130,12 @@ Available in: initializer**
 
 Generally no need to change, but here in case you want to change the default of where templates and generated config files are stored.
 
-### root_path
+### base_path
 **Type: string  
 Default: Rails.root in rails apps, ‘./’ in others  
 Available in: environment variable, config file, initializer**
 
-Biran assumes you will be using `Rails.root` in dev of course and will use that value unless something else is specified. If using capistrano, you will want to define the root_path not including `current`. Biran will use this path to find the shared dir and the local config dir used to override any values.
+Biran assumes you will be using `Rails.root` in dev of course and will use that value unless something else is specified. If using capistrano, you will want to define the base_path not including `current`. Biran will use this path to find the shared dir and the local config dir used to override any values.
 
 ### shared_dir
 **Type: string  
@@ -221,7 +221,7 @@ With the following config snippet as an example, you can use `@vhost[:host]` ins
 ```
 defaults: &defaults
   app: &app_defaults
-    root_path: <%= Rails.root %>
+    base_path: <%= Rails.root %>
     use_capistrano: false
     bindings:
       - db_config
