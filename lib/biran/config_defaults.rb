@@ -7,7 +7,7 @@ module Biran
     def app_defaults_init
       {
         app: {
-          root_path: configuration.root_path,
+          base_path: configuration.base_path,
           shared_dir: configuration.shared_dir,
           base_dir: configuration.base_dir,
           use_capistrano: configuration.use_capistrano,
@@ -20,7 +20,7 @@ module Biran
     end
 
     def app_base
-      @app_base ||= ENV['APP_ROOT'] || app_config_defaults[:app][:root_path]
+      @app_base ||= ENV['BIRAN_APP_BASE_PATH'] || app_config_defaults[:app][:base_path] || app_config_defaults[:app][:root_path]
     end
 
     def app_root
@@ -42,7 +42,7 @@ module Biran
     end
 
     def local_config_file
-      ENV['LOCAL_CONFIG_FILE'] ||
+      ENV['BIRAN_LOCAL_CONFIG_FILE'] ||
         File.join(app_shared_dir, configuration.config_dirname, configuration.local_config_filename)
     end
 
