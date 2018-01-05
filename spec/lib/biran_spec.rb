@@ -13,9 +13,9 @@ describe Biran do
       expect(described_class.config.app_env).to eq 'test'
     end
 
-    it 'root_path is configurable' do
-      subject.configure { |config| config.root_path = 'path/to/root/' }
-      expect(described_class.config.root_path).to eq 'path/to/root/'
+    it 'base_path is configurable' do
+      subject.configure { |config| config.base_path = 'path/to/root/' }
+      expect(described_class.config.base_path).to eq 'path/to/root/'
     end
   end
 

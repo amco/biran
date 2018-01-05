@@ -6,7 +6,7 @@ module Biran
 
     attr_writer :config_filename, :local_config_filename, :db_config_filename,
                 :secrets_filename, :config_dirname, :use_capistrano, :db_config,
-                :secrets, :root_path, :app_env, :base_dir, :bindings, :app_setup_blocks
+                :secrets, :base_path, :app_env, :base_dir, :bindings, :app_setup_blocks
 
     attr_accessor :shared_dir
 
@@ -67,10 +67,10 @@ module Biran
       @bindings ||= %i[db_config]
     end
 
-    def root_path
-      return @root_path if @root_path
-      @root_path = Rails.root if defined? Rails
-      @root_path ||= './'
+    def base_path
+      return @base_path if @base_path
+      @base_path = Rails.root if defined? Rails
+      @base_path ||= './'
     end
   end
 end
