@@ -38,7 +38,7 @@ module Biran
     end
 
     def config_dir
-      File.join configuration.root_path, configuration.config_dirname
+      File.join configuration.base_path, configuration.config_dirname
     end
 
     def local_config_file
@@ -51,7 +51,7 @@ module Biran
     end
 
     def secrets_file
-      File.join(configuration.root_path, configuration.config_dirname, configuration.secrets_filename)
+      File.join(configuration.base_path, configuration.config_dirname, configuration.secrets_filename)
     end
 
     def default_db_config_file
