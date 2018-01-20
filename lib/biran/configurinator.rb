@@ -72,6 +72,8 @@ module Biran
     end
 
     def base_db_config
+      return @base_db_config if @base_db_config
+      return @base_db_config = {} unless File.exists? default_db_config_file
       @base_db_config ||= process_config_file(default_db_config_file)
     end
 
