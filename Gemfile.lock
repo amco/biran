@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    biran (0.1.4)
+    biran (0.1.5)
       railties
 
 GEM
