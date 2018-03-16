@@ -54,6 +54,9 @@ module Biran
     end
 
     def default_db_config_file
+      unless defined? Rails
+        return "#{app_defaults_init[:app][:base_path]}/#{configuration.config_dirname}/#{configuration.db_config_filename}"
+      end
       Rails.root.join(configuration.config_dirname, configuration.db_config_filename)
     end
 
