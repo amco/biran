@@ -30,12 +30,12 @@ module Biran
     end
 
     def file_tasks
-      files_to_generate.keys
+      config_files_to_generate.keys
     end
 
     def files_to_generate
       @files_to_generate ||= config.fetch(:app, {})
-        .fetch(:files_to_generate, configuration.files_to_generate)
+        .fetch(:files_to_generate, config_files_to_generate)
         .tap { |files_list| files_list.each(&sanitize_config_files(files_list)) }
     end
 
@@ -44,6 +44,16 @@ module Biran
       generated_file = ERBConfig.new(filtered_config, name, extension, config_dir, output_dir)
       generated_file.bindings = bindings
       generated_file.save!
+    end
+
+    def default_db_file?
+      config.fetch(:app, {}).fetch(:db_config, nil) != false
+    end
+
+    def config_files_to_generate
+      files = configuration.files_to_generate
+      return files unless default_db_file?
+      files.merge configuration.db_file_to_generate
     end
 
     private
@@ -121,7 +131,7 @@ module Biran
       lambda do |file, _|
         files_list[file] ||=  {extension: ''}
         ext = files_list[file].fetch(:extension, '').strip
-        ext.prepend('.') unless ext.starts_with?('.') || ext.empty?
+        ext.prepend('.') unless ext.start_with?('.') || ext.empty?
         files_list[file][:extension] = ext
       end
     end

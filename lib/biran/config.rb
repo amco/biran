@@ -45,10 +45,11 @@ module Biran
     end
 
     def files_to_generate
-      {
-        vhost: {extension: '.conf'},
-        database: {extension: '.yml'}
-      }
+      { vhost: {extension: '.conf'} }
+    end
+
+    def db_file_to_generate
+      { database: { extension: '.yml' } }
     end
 
     def db_config
