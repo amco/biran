@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency "railties"
+  s.add_dependency "activesupport"
   s.add_development_dependency "rails"
   s.add_development_dependency "bundler"
   s.add_development_dependency 'rspec'

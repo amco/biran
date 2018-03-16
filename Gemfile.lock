@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     biran (0.1.4)
+      activesupport
       railties
 
 GEM
