@@ -6,7 +6,7 @@ That guy that creates the config files for every new proyect.
 
 This is a simple proof of concept on the configuration files we use in most of our rails/ruby projects.
 
-This version will look for an `app_config.yml` file on `config` folder in the project root.
+This version will look for an `app_config.yml` file in `config` folder in the project root.
 
 # TODO:
 
@@ -15,6 +15,27 @@ This version will look for an `app_config.yml` file on `config` folder in the pr
 - Add option for server config, right now only creates nginx vhost file and mysql database files for rails AR projects.
 - More stuff
 
+# Use
+In a rails app, simply include the gem in your Gemfile:
+```
+gem 'biran'
+```
+
+In a non-rails app, you will need to do some extra work to make the tasks available to rake. In your Rakefile you will need to manually include things.
+Here is a minimal Rakefile for a basic ruby app that includes the biran tasks along with any local tasks in `lib/tasks`
+```
+require 'bundler/setup'
+Bundler.require
+
+biran_gem = Gem::Specification.find_by_name 'biran'
+Dir["#{biran_gem.gem_dir}/lib/tasks/*.rake"].each do |file|
+  Rake::load_rakefile(file)
+end
+
+$LOAD_PATH.unshift(File.expand_path('../lib', __FILE__))
+
+Dir.glob('lib/tasks/*.rake').each {|r| import r}
+```
 
 # Configuration
 
@@ -249,14 +270,13 @@ Generally not needed to configure, but available. Used to prevent defined top le
 Default:**  
 ```
 {
-  vhost: {extension: '.conf'},
-  database: {extension: '.yml'}
+  vhost: {extension: '.conf'}
 }
 ```  
 **Available in: config file, initializer**
 
 This config option defines which files you want to be available to generate as part of the config:generate task. Each file listed will get its own task and will be run when `rake config:generate` is run.
-The default config will generate `config/vhost.conf` and `config/database.yml`. By default, all files will be generated in the `config` directory. You can override this in the options.
+The default config will generate `config/vhost.conf` only. By default, all files will be generated in the `config` directory. You can override this in the options.
 Basic exmple from `config/app_config.yml`:
 ```
 app:
