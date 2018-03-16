@@ -25,10 +25,12 @@ In a non-rails app, you will need to do some extra work to make the tasks availa
 Here is a minimal Rakefile for a basic ruby app that includes the biran tasks along with any local tasks in `lib/tasks`
 ```
 require 'bundler/setup'
-require 'biran'
+Bundler.require
 
-spec = Gem::Specification.find_by_name 'biran'
-load "#{spec.gem_dir}/lib/tasks/biran_tasks.rake"
+biran_gem = Gem::Specification.find_by_name 'biran'
+Dir["#{biran_gem.gem_dir}/lib/tasks/*.rake"].each do |file|
+  Rake::load_rakefile(file)
+end
 
 $LOAD_PATH.unshift(File.expand_path('../lib', __FILE__))
 
