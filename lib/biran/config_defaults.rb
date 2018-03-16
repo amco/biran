@@ -54,7 +54,7 @@ module Biran
     end
 
     def default_db_config_file
-      Rails.root.join(configuration.config_dirname, configuration.db_config_filename)
+      File.join(config_dir, configuration.db_config_filename)
     end
 
     def use_capistrano?

@@ -46,8 +46,7 @@ module Biran
 
     def files_to_generate
       {
-        vhost: {extension: '.conf'},
-        database: {extension: '.yml'}
+        vhost: {extension: '.conf'}
       }
     end
 

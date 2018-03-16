@@ -121,7 +121,7 @@ module Biran
       lambda do |file, _|
         files_list[file] ||=  {extension: ''}
         ext = files_list[file].fetch(:extension, '').strip
-        ext.prepend('.') unless ext.starts_with?('.') || ext.empty?
+        ext.prepend('.') unless ext.start_with?('.') || ext.empty?
         files_list[file][:extension] = ext
       end
     end

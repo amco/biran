@@ -1,3 +1,6 @@
+require 'yaml'
+require 'erb'
+require 'active_support/core_ext/hash'
 require 'biran/config_defaults'
 require 'biran/config'
 require 'biran/erb_config'
