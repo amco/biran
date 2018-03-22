@@ -19,9 +19,10 @@ module Biran
       end
 
       def env
-        return @end if @env
-        return Rails.env if defined? Rails
-        DEFAULT_ENV
+        return @env if @env
+        #return Rails.env if defined? Rails
+        #DEFAULT_ENV
+        @env = app_env
       end
     end
 
@@ -33,6 +34,11 @@ module Biran
       files_to_generate.keys
     end
 
+    def debug_stuff
+      puts "app env2 is: #{app_env}"
+      puts "rack env is #{ENV['RACK_ENV']}"
+    end
+
     def files_to_generate
       @files_to_generate ||= config.fetch(:app, {})
         .fetch(:files_to_generate, configuration.files_to_generate)
@@ -41,6 +47,7 @@ module Biran
 
     def create(name:, extension:, output_dir: nil)
       output_dir ||= config_dir
+      debug_stuff
       generated_file = ERBConfig.new(filtered_config, name, extension, config_dir, output_dir)
       generated_file.bindings = bindings
       generated_file.save!

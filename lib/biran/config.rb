@@ -13,7 +13,7 @@ module Biran
     def app_env
       return @app_env if @app_env
       @app_env = Rails.env if defined? Rails
-      @app_env ||= 'development'
+      @app_env ||= 'development'.freeze
     end
 
     def base_dir
