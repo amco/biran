@@ -40,6 +40,10 @@ module Biran
       @config_dirname ||= 'config'.freeze
     end
 
+    def vhost_public_dirname
+      @vhost_public_dirname ||= 'public'.freeze
+    end
+
     def use_capistrano
       @use_capistrano ||= false
     end

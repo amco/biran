@@ -104,7 +104,7 @@ module Biran
 
     def config_vhost_dirs
       {
-        public_dir: File.join(app_root, 'public'),
+        public_dir: File.join(app_root, vhost_public_dirname),
         shared_dir: app_shared_dir.to_s,
         log_dir: File.join(app_root, 'log'),
         pids_dir: File.join(app_root, 'tmp', 'pids')

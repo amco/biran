@@ -13,7 +13,8 @@ module Biran
           use_capistrano: configuration.use_capistrano,
           db_config: configuration.db_config,
           secrets: configuration.secrets,
-          bindings: configuration.bindings
+          bindings: configuration.bindings,
+          vhost_public_dirname: configuration.vhost_public_dirname
         }
       }
     end
@@ -47,6 +48,10 @@ module Biran
     def local_config_file
       ENV['BIRAN_LOCAL_CONFIG_FILE'] ||
         File.join(app_shared_dir, configuration.config_dirname, configuration.local_config_filename)
+    end
+
+    def vhost_public_dirname
+      ENV['BIRAN_VHOST_PUBLIC_DIRNAME'] || app_config_defaults[:app][:vhost_public_dirname]
     end
 
     def db_config_override_file
