@@ -293,8 +293,8 @@ app:
       output_dir: ‘/srv/app/current/reports’
 ```
 ### vhost_public_dirname
-**TYpe: string**
-Default: 'public'**
+**Type: string**  
+Default: 'public'**  
 Available in: config file, initializer**
 
 Used to change the value of the public web directorname for use in the vhost config. Defined in the app block
