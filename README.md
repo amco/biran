@@ -102,6 +102,7 @@ the list of things you can configure are:
 :bindings,
 :app_setup_blocks,
 :files_to_generate
+:vhost_public_dirname
 ```
 ## Options
 ### config_filename
@@ -290,5 +291,15 @@ app:
     reports:
       extension: ‘.yml’
       output_dir: ‘/srv/app/current/reports’
+```
+### vhost_public_dirname
+**TYpe: string**
+Default: 'public'**
+Available in: config file, initializer**
+
+Used to change the value of the public web directorname for use in the vhost config. Defined in the app block
+```
+app:
+  vhost_public_dirname: 'web'
 ```
 
