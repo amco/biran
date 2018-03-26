@@ -17,13 +17,11 @@ module Biran
       def env= env
         @env = env
       end
+    end
 
-      def env
-        return @env if @env
-        #return Rails.env if defined? Rails
-        #DEFAULT_ENV
-        @env = app_env
-      end
+    def env
+      return @env if @env
+      @env = app_env
     end
 
     def initialize
@@ -36,6 +34,8 @@ module Biran
 
     def debug_stuff
       puts "app env2 is: #{app_env}"
+      puts "instance @env is #{@env}"
+      puts "env from method is #{env}"
       puts "rack env is #{ENV['RACK_ENV']}"
     end
 
@@ -60,6 +60,7 @@ module Biran
         app_root_dir: app_root,
         app_shared_dir: app_shared_dir,
         app_base_dir: app_base,
+        env: env,
         local_config_file: local_config_file,
         secrets_file_path: secrets_file,
         vhost: config_vhost_dirs
@@ -96,7 +97,7 @@ module Biran
       config_file_contents = File.read(config_file)
       config_file_contents = ERB.new(config_file_contents).result
       config_file_contents = YAML.safe_load(config_file_contents, [], [], true)
-      config_file_contents[Configurinator.env].deep_symbolize_keys!
+      config_file_contents[env].deep_symbolize_keys!
     rescue Errno::ENOENT
       raise "Missing config file: #{config_file}"
     end
