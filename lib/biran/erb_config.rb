@@ -1,18 +1,19 @@
 module Biran
   class ERBConfig
-    attr_reader :output_dir, :source_dir, :name, :extension, :config
+    attr_reader :output_dir, :source_dir, :name, :extension, :config, :output_name
     attr_accessor :bindings
 
-    def initialize(config, name, extension, source, output)
+    def initialize(config, name, extension, source, output_dir, output_name)
       @name       = name
       @extension  = extension
       @config     = config
       @source_dir = source
-      @output_dir = output
+      @output_dir = output_dir
+      @output_name = output_name
     end
 
     def save!
-      File.open(File.join(output_dir, "#{name}#{extension}"), 'w') do |f|
+      File.open(File.join(output_dir, "#{output_name}#{extension}"), 'w') do |f|
         f.print process_erb.result(build_erb_env.call)
       end
     end
