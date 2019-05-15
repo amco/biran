@@ -277,8 +277,8 @@ Default:**
 **Available in: config file, initializer**
 
 This config option defines which files you want to be available to generate as part of the config:generate task. Each file listed will get its own task and will be run when `rake config:generate` is run.
-The default config will generate `config/vhost.conf` only. By default, all files will be generated in the `config` directory. You can override this in the options by setting an `output_dir` and/or an `output_name` to define the location and the name to be added to the extension.
-NOTE: If you use the `output_name` option, the template name is still pulled from the block name. In the example below, for the reports file, the template name would be `config/_reports.yml.erb` and the block will genearte a file in `/srv/app/current/reports` named `user_report.yml`.
+The default config will generate `config/vhost.conf` only. By default, all files will be generated in the `config` directory. You can override this in the options by setting an `output_dir` and/or an `output_name` to define the location and the name to be added to the extension.  
+NOTE: If you use the `output_name` option, the template name is still pulled from the block name. In the example below, for the reports file, the template name would be `config/_reports.yml.erb` and the block will generate a file in `/srv/app/current/reports` named `user_report.yml`.  
 Basic exmple from `config/app_config.yml`:
 ```
 app:
