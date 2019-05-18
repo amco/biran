@@ -4,7 +4,7 @@ module Biran
 
     DEFAULT_ENV = 'development'
 
-    attr_reader :config, :db_config
+    attr_reader :config, :db_config, :env
 
     class << self
       attr_accessor :config
@@ -13,18 +13,10 @@ module Biran
         self.config ||= Config.instance
         yield config
       end
-
-      def env= env
-        @env = env
-      end
     end
 
-    def env
-      return @env if @env
-      @env = app_env
-    end
-
-    def initialize
+    def initialize(env: nil)
+      @env = env || app_env
       @config = build_app_config
     end
 
@@ -49,6 +41,7 @@ module Biran
     private
 
     def build_app_config
+      raise 'Environment not set to build the application config' unless @env
       app_config = {
         app_root_dir: app_root,
         app_shared_dir: app_shared_dir,
