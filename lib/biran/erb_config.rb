@@ -27,7 +27,7 @@ module Biran
 
     def build_erb_env
       proc do
-        @environment = Configurinator.env
+        @environment = config[:env]
         @app_config  = config
 
         @bindings.each(&assign_instance_vars) unless @bindings.nil?

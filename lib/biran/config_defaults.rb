@@ -19,6 +19,10 @@ module Biran
       }
     end
 
+    def app_env
+      ENV['BIRAN_APP_ENV'] || ENV['RACK_ENV'] || ENV['RAILS_ENV'] || configuration.app_env
+    end
+
     def app_base
       @app_base ||= ENV['BIRAN_APP_BASE_PATH'] || app_config_defaults[:app][:base_path] || app_config_defaults[:app][:root_path]
     end

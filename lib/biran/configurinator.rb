@@ -4,7 +4,7 @@ module Biran
 
     DEFAULT_ENV = 'development'
 
-    attr_reader :config, :db_config
+    attr_reader :config, :db_config, :env
 
     class << self
       attr_accessor :config
@@ -13,19 +13,10 @@ module Biran
         self.config ||= Config.instance
         yield config
       end
-
-      def env= env
-        @env = env
-      end
-
-      def env
-        return @end if @env
-        return Rails.env if defined? Rails
-        DEFAULT_ENV
-      end
     end
 
-    def initialize
+    def initialize(env: nil)
+      @env = env || app_env
       @config = build_app_config
     end
 
@@ -50,10 +41,12 @@ module Biran
     private
 
     def build_app_config
+      raise 'Environment not set to build the application config' unless @env
       app_config = {
         app_root_dir: app_root,
         app_shared_dir: app_shared_dir,
         app_base_dir: app_base,
+        env: env,
         local_config_file: local_config_file,
         secrets_file_path: secrets_file,
         vhost: config_vhost_dirs
@@ -90,7 +83,7 @@ module Biran
       config_file_contents = File.read(config_file)
       config_file_contents = ERB.new(config_file_contents).result
       config_file_contents = YAML.safe_load(config_file_contents, [], [], true)
-      config_file_contents[Configurinator.env].deep_symbolize_keys!
+      config_file_contents[env].deep_symbolize_keys!
     rescue Errno::ENOENT
       raise "Missing config file: #{config_file}"
     end

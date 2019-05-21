@@ -227,9 +227,18 @@ defaults: &defaults
 ### app_env
 **Type: string  
 Default: Rails.env if rails or ‘development’ in non rails  
-Availble in: config file, initializer**
+Availble in: environment, initializer, instance**
 
-Generally not needed to specify unless you are not using rails or do not want to use `Rails.env` for lookups in config blocks.
+Generally not needed to specify unless you are not using rails or do not want to use `Rails.env` for lookups in config blocks.  
+You can set the app_env during instance creation by passing an environment string.  
+The following example will use the default or any of the built in environment vairables(BIRAN_APP_ENV, RACK_ENV, RAILS_ENV) or fall back to default.
+```
+config = Biran::Configurinator.new
+```
+If you need to specify the environment on the instance directly, you can do the following to create a staging config object independent of the other app_env settings:
+```
+config = Biran::Configurinator.new(env: ‘staging)
+```
 
 ### bindings
 **Type: array  
