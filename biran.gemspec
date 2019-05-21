@@ -19,9 +19,9 @@ Gem::Specification.new do |s|
   s.executables = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_dependency "railties"
-  s.add_dependency "activesupport"
-  s.add_development_dependency "rails"
+  s.add_dependency "railties", "~> 5.0.7"
+  s.add_dependency "activesupport", "~> 5.0.7"
+  s.add_development_dependency "rails", "~> 5.0.7"
   s.add_development_dependency "bundler"
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'tapout'
