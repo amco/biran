@@ -2,8 +2,8 @@ PATH
   remote: .
   specs:
     biran (0.1.7)
-      activesupport (~> 5.0.7)
-      railties (~> 5.0.7)
+      activesupport (>= 5.0.7)
+      railties (>= 5.0.7)
 
 GEM
   remote: http://rubygems.org/
@@ -136,7 +136,7 @@ PLATFORMS
 DEPENDENCIES
   biran!
   bundler
-  rails (~> 5.0.7)
+  rails (>= 5.0.7)
   rspec
   rspec-ontap
   tapout
