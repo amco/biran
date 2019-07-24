@@ -20,7 +20,7 @@ module Biran
     end
 
     def app_env
-      ENV['BIRAN_APP_ENV'] || ENV['RACK_ENV'] || ENV['RAILS_ENV'] || configuration.app_env
+      ENV['BIRAN_APP_ENV'] || ENV['RAILS_ENV'] || ENV['RACK_ENV'] || configuration.app_env
     end
 
     def app_base

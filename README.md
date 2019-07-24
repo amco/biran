@@ -231,7 +231,7 @@ Availble in: environment, initializer, instance**
 
 Generally not needed to specify unless you are not using rails or do not want to use `Rails.env` for lookups in config blocks.  
 You can set the app_env during instance creation by passing an environment string.  
-The following example will use the default or any of the built in environment vairables(BIRAN_APP_ENV, RACK_ENV, RAILS_ENV) or fall back to default.
+The following example will use the value of one of the built in environment variable found, checked in the following order: BIRAN_APP_ENV, RAILS_ENV, RACK_ENV. If one of the environment variables is not found, the default value will be used.
 ```
 config = Biran::Configurinator.new
 ```
