@@ -11,11 +11,11 @@ module Biran
           shared_dir: configuration.shared_dir,
           base_dir: configuration.base_dir,
           use_capistrano: configuration.use_capistrano,
-          db_config: configuration.db_config,
-          secrets: configuration.secrets,
           bindings: configuration.bindings,
           vhost_public_dirname: configuration.vhost_public_dirname
-        }
+        },
+        db_config: configuration.db_config,
+        secrets: configuration.secrets,
       }
     end
 
