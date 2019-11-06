@@ -104,11 +104,8 @@ module Biran
     end
 
     def get_secrets_content(secrets_file)
-      secrets_file_contents = {}
-      if File.exist? secrets_file
-        secrets_file_contents = process_config_file secrets_file
-      end
-      secrets_file_contents
+      return {} unless File.exists? secrets_file
+      process_config_file secrets_file
     end
 
     def sanitize_config_files files_list
