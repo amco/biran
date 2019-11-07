@@ -30,12 +30,17 @@ module Biran
         .tap { |files_list| files_list.each(&sanitize_config_files(files_list)) }
     end
 
-    def create(name:, extension:, output_dir: nil, output_name: nil)
+    def create(name:, extension:, output_dir: nil, output_name: nil, config_index_list: [])
       output_dir ||= config_dir
       output_name ||= name
       generated_file = ERBConfig.new(filtered_config, name, extension, config_dir, output_dir, output_name)
       generated_file.bindings = bindings
-      generated_file.save!
+      return generated_file.save! unless config_index_list.any?
+      config_index_list.each do |config_index|
+        generated_file.output_name = "#{output_name}-#{config_index}"
+        generated_file.config_index = config_index
+        generated_file.save!
+      end
     end
 
     private

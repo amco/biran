@@ -1,7 +1,9 @@
 module Biran
   class ERBConfig
-    attr_reader :output_dir, :source_dir, :name, :extension, :config, :output_name
-    attr_accessor :bindings
+    attr_reader :output_dir, :source_dir, :name, :extension, :config, :template_contents
+    attr_accessor :bindings, :output_name, :config_index
+
+    DEFAULT_CONFIG_INDEX = 1
 
     def initialize(config, name, extension, source, output_dir, output_name)
       @name       = name
@@ -10,11 +12,12 @@ module Biran
       @source_dir = source
       @output_dir = output_dir
       @output_name = output_name
+      @template_contents = process_erb
     end
 
     def save!
       File.open(File.join(output_dir, "#{output_name}#{extension}"), 'w') do |f|
-        f.print process_erb.result(build_erb_env.call)
+        f.print template_contents.result(build_erb_env.call)
       end
     end
 
@@ -29,6 +32,7 @@ module Biran
       proc do
         @environment = config[:env]
         @app_config  = config
+        @config_index =  config_index || DEFAULT_CONFIG_INDEX
 
         @bindings.each(&assign_instance_vars) unless @bindings.nil?
 
