@@ -38,7 +38,7 @@ module Biran
       return generated_file.save! unless config_index_list.any?
       config_index_list.each do |config_index|
         generated_file.output_name = "#{output_name}-#{config_index}"
-        generated_file.config_index = config_index
+        generated_file.template_config_index = config_index
         generated_file.save!
       end
     end

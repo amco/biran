@@ -1,9 +1,9 @@
 module Biran
   class ERBConfig
     attr_reader :output_dir, :source_dir, :name, :extension, :config, :template_contents
-    attr_accessor :bindings, :output_name, :config_index
+    attr_accessor :bindings, :output_name, :template_config_index
 
-    DEFAULT_CONFIG_INDEX = 1
+    DEFAULT_TEMPLATE_CONFIG_INDEX = 1
 
     def initialize(config, name, extension, source, output_dir, output_name)
       @name       = name
@@ -32,7 +32,7 @@ module Biran
       proc do
         @environment = config[:env]
         @app_config  = config
-        @config_index =  config_index || DEFAULT_CONFIG_INDEX
+        @config_index =  template_config_index || DEFAULT_TEMPLATE_CONFIG_INDEX
 
         @bindings.each(&assign_instance_vars) unless @bindings.nil?
 
