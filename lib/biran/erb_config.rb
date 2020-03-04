@@ -6,13 +6,14 @@ module Biran
     DEFAULT_TEMPLATE_CONFIG_INDEX = 1
 
     def initialize(config, name, extension, source, output_dir, output_name)
-      @name       = name
-      @extension  = extension
-      @config     = config
-      @source_dir = source
-      @output_dir = output_dir
-      @output_name = output_name
-      @template_contents = process_erb
+      before_process_erb do
+        @name       = name
+        @extension  = extension
+        @config     = config
+        @source_dir = source
+        @output_dir = output_dir
+        @output_name = output_name
+      end
     end
 
     def save!
@@ -22,6 +23,26 @@ module Biran
     end
 
     private
+
+    def before_process_erb
+      yield
+      begin
+        process_erb_ready?
+      rescue ArgumentError => e
+        puts 'Settings required to determine template name are not configured'
+        puts e
+        exit
+      end
+      @template_contents = process_erb
+    end
+
+    def process_erb_ready?
+      error_text = "Missing argument: %s for #{name} block"
+      raise ArgumentError.new(error_text % 'name') unless @name
+      raise ArgumentError.new(error_text % 'extension') unless @extension
+      raise ArgumentError.new(error_text % 'source_dir') unless @source_dir
+      true
+    end
 
     def process_erb
       config_erb_file = File.join(source_dir, "_#{name}#{extension}.erb")
