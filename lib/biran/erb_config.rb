@@ -45,8 +45,13 @@ module Biran
     end
 
     def process_erb
-      config_erb_file = File.join(source_dir, "_#{name}#{extension}.erb")
-      ERB.new(File.read(config_erb_file), nil, '-')
+      begin
+        config_erb_file = File.join(source_dir, "_#{name}#{extension}.erb")
+        ERB.new(File.read(config_erb_file), nil, '-')
+      rescue Errno::ENOENT
+        puts "Missing template file #{config_erb_file}"
+        exit
+      end
     end
 
     def build_erb_env

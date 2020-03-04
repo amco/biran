@@ -12,7 +12,12 @@ namespace :config do
   config.files_to_generate.each do |file_name, options|
     desc %(Generate the #{file_name}#{options.fetch(:extension, '')} config file)
     task file_name do
-      config.create name: file_name, **options
+      begin
+       config.create name: file_name, **options
+      rescue ArgumentError => e
+        puts 'Missing required argument or bad formatting in config file'
+        puts e
+      end
     end
   end
 
