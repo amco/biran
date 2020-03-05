@@ -1,7 +1,7 @@
 module Biran
   class ConfigSyntaxError < ::StandardError
-    def initialize(msg='Missing required argument or bad formatting in config file')
-      @msg = msg
+    def initialize(msg=nil)
+      @msg = msg || 'Missing required argument or bad formatting in config file'
       set_backtrace []
     end
 
