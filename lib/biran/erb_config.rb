@@ -26,32 +26,24 @@ module Biran
 
     def before_process_erb
       yield
-      begin
-        process_erb_ready?
-      rescue ArgumentError => e
-        puts 'Settings required to determine template name are not configured'
-        puts e
-        exit
-      end
+      raise ArgumentError unless process_erb_ready?
       @template_contents = process_erb
+    rescue ArgumentError
+      e_message = "Settings required to determine template name for #{name} are not configured"
+      raise Biran::ConfigSyntaxError, e_message
     end
 
     def process_erb_ready?
-      error_text = "Missing argument: %s for #{name} block"
-      raise ArgumentError.new(error_text % 'name') unless @name
-      raise ArgumentError.new(error_text % 'extension') unless @extension
-      raise ArgumentError.new(error_text % 'source_dir') unless @source_dir
-      true
+      @name &&
+      @extension &&
+      @source_dir
     end
 
     def process_erb
-      begin
-        config_erb_file = File.join(source_dir, "_#{name}#{extension}.erb")
-        ERB.new(File.read(config_erb_file), nil, '-')
-      rescue Errno::ENOENT
-        puts "Missing template file #{config_erb_file}"
-        exit
-      end
+      config_erb_file = File.join(source_dir, "_#{name}#{extension}.erb")
+      ERB.new(File.read(config_erb_file), nil, '-')
+    rescue Errno::ENOENT
+      raise Biran::ConfigSyntaxError, "Missing template file for #{name}: #{config_erb_file}"
     end
 
     def build_erb_env
