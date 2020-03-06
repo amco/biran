@@ -302,7 +302,39 @@ app:
       extension: ‘.yml’
       output_dir: ‘/srv/app/current/reports’
       output_name: ‘user_report’
+```  
+
+In a more advanced example, you can generate multiple files from the same template by setting the `config_index_list` option. If you set this as a list of indexes, then a file will be generated for each index. The index number 
+will get passed to the template as an instance variable (`@config_index`) and can be used to look up a specific version of values from the config file. The file that is generated will respect the normal naming, including using the `output_name` option, however, it will append the 
+index number to the end of the file name. If the name was going to be special_file, and you add an index list of `[1,2]`, two files will get generated named `special_file-1` and `special_file-2`.  
+Advanced example from `config/app:.yml`:
 ```
+app:
+  files_to_generate:
+    reports:
+      extension: '.yml'
+      config_index_list:
+        - one
+        - two
+reports:
+  default: &reports_default_values
+    some_value: 'some_value'
+    other_value: 'other_value'
+  one:
+    <<: *reports_default_values
+  two:
+    <<: *reports_default_values
+    some_value: 'my_value'
+```  
+Then in your template file you can use the index to get the proper config for each generated file. This allows you to reuse the same template to generate multiple files, each with different content. This is useful for generating service config files, like for sidekiq workers.
+The config above would generate two files: `config/reports-one.yml` and `config/reports-two.yml`, using the content from each index block as specified in the following simple template example.
+```
+<% index = "{@config_index}" -%>
+defaults:
+  :some_value: <%= @app_config[:reports][index.to_sym][:some_value] %>
+  :other_value: <%= @app_config[:reports][index.to_sym][:other_value] %>
+```  
+
 ### vhost_public_dirname
 **Type: string  
 Default: 'public'  
