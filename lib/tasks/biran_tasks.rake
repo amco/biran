@@ -18,7 +18,6 @@ namespace :config do
     end
 
     abort 'Errors in creating config files' unless error_count == 0
-    return
   end
   task :generate_with_deps
 
