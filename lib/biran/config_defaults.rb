@@ -63,7 +63,11 @@ module Biran
     end
 
     def secrets_file
-      File.join(configuration.base_path, configuration.config_dirname, configuration.secrets_filename)
+      File.join(configuration.base_path, configuration.config_dirname, secrets_filename)
+    end
+
+    def secrets_filename
+      app_config_defaults[:app][:secrets_filename] || configuration.secrets_filename
     end
 
     def default_db_config_file
