@@ -47,7 +47,11 @@ module Biran
 
     def local_config_file
       ENV['BIRAN_LOCAL_CONFIG_FILE'] ||
-        File.join(app_shared_dir, configuration.config_dirname, configuration.local_config_filename)
+        File.join(app_shared_dir, configuration.config_dirname, local_config_filename)
+    end
+
+    def local_config_filename
+      ENV['BIRAN_LOCAL_CONFIG_FILENAME'] || app_config_defaults[:app][:local_config_filename] || configuration.local_config_filename
     end
 
     def vhost_public_dirname
