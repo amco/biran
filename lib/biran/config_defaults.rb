@@ -47,7 +47,11 @@ module Biran
 
     def local_config_file
       ENV['BIRAN_LOCAL_CONFIG_FILE'] ||
-        File.join(app_shared_dir, configuration.config_dirname, configuration.local_config_filename)
+        File.join(app_shared_dir, configuration.config_dirname, local_config_filename)
+    end
+
+    def local_config_filename
+      ENV['BIRAN_LOCAL_CONFIG_FILENAME'] || app_config_defaults[:app][:local_config_filename] || configuration.local_config_filename
     end
 
     def vhost_public_dirname
@@ -55,15 +59,23 @@ module Biran
     end
 
     def db_config_override_file
-      File.join(app_shared_dir, configuration.config_dirname, configuration.db_config_filename)
+      File.join(app_shared_dir, configuration.config_dirname, db_config_filename)
+    end
+
+    def db_config_filename
+       app_config_defaults[:app][:db_config_filename] || configuration.db_config_filename
     end
 
     def secrets_file
-      File.join(configuration.base_path, configuration.config_dirname, configuration.secrets_filename)
+      File.join(configuration.base_path, configuration.config_dirname, secrets_filename)
+    end
+
+    def secrets_filename
+      app_config_defaults[:app][:secrets_filename] || configuration.secrets_filename
     end
 
     def default_db_config_file
-      File.join(config_dir, configuration.db_config_filename)
+      File.join(config_dir, db_config_filename)
     end
 
     def use_capistrano?
