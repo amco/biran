@@ -63,7 +63,7 @@ module Biran
     end
 
     def db_config_filename
-       app_config_defaults[:app][:db_config_file_name] || configuration.db_config_filename
+       app_config_defaults[:app][:db_config_filename] || configuration.db_config_filename
     end
 
     def secrets_file
