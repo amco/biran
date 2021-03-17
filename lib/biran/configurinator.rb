@@ -114,7 +114,7 @@ module Biran
     end
 
     def sanitize_config_files files_list
-      lambda do |file, _|
+      lambda do |(file, _)|
         files_list[file] ||=  {extension: ''}
         ext = files_list[file].fetch(:extension, '').strip
         ext.prepend('.') unless ext.start_with?('.') || ext.empty?
