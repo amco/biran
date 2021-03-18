@@ -19,8 +19,8 @@ Gem::Specification.new do |s|
   s.executables = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_dependency 'railties', '~> 5.0', '>= 5.0.7'
-  s.add_dependency "activesupport", "~> 5.0", ">= 5.0.7"
+  s.add_dependency 'railties', '>= 5.0.7'
+  s.add_dependency "activesupport", '>= 5.0.7'
   s.add_development_dependency "rails", "~> 5.0", ">= 5.0.7"
   s.add_development_dependency "bundler", "~> 2.1"
   s.add_development_dependency 'rspec', '~> 3.7'
