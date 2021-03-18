@@ -1,0 +1,13 @@
+defaults: &defaults
+  app:
+    base_path: <%= Dir.pwd %>
+    use_capistrano: false
+    files_to_generate:
+      my_config:
+        extension: '.yml'
+
+test:
+  <<: *defaults
+
+development:
+  <<: *defaults
