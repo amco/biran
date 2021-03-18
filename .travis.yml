@@ -4,10 +4,14 @@ language: ruby
 rvm:
   - 2.3.5
   - 2.4.0
+  - 3.0.0
 branches:
   only:
     - /^\d+\.\d+$/
     - master
+jobs:
+  include:
+    - stage: test
 notifications:
   slack:
     secure: YkD0mOUr/1dnOQ8MVVXJc5EKCH6dYzfYUqOZkCqLLX4+4CEW/u/IFRb0UOcQbZVXSGfUxHwd+3CbOTV1c87ujOBmSxDdXVy7jVbLsna5X5Tua+SoiCssVMMpTs2ktGRJ+XnnW78nYNjq3a/OXtIe0n/C7Aa6X0d3nlzho2zcp8fescPihmiZIEv/kzruZZT0AMkmrz+AUm4zp79wW5WxgrbaC9SrMT8G7EvYxovravKwr5mgQ7LSkpPLfDFEFFzbWKSZH2+aOJ/JhpuCIgZAsS5V0qrQXi8HRsZwKt68pJ0UlXRe6LM+KHU5L4rPN9ghbwUv7YFtQBZQRyX4O/t0CDaIk3mAbpO5E88cz+id0w+LBsIDyw7JQBvdkEKlyYmdXH3LPrk/kEaxF65EExMoSjAVoEUyKez/XQn3mzOeUfn2mnMUAbXu4KSgf1VOjBtTtmN5m5hCx5kJj++Qg94mhEtTjAZy4Z47TWFLw/ATbYWguvu4nWTXAYwBDAVpheksHRgxyWtd+d43sRXT32b7FUsTm/HbWagwFXEw89d+Sa+byWFT21RZi1NO8vioQ7OaYtU6O/QEzDH1a4ODdJaCH5nQhoGuvdMDwMqmp5wTqYcyGeGhuQ8t31FY3XY3mmQERQqozr0emfqlTtoqxoB6iEsQ1i1QVriOt8J5IQoXeOQ=
