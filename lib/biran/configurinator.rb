@@ -87,7 +87,7 @@ module Biran
     def process_config_file(config_file)
       config_file_contents = File.read(config_file)
       config_file_contents = ERB.new(config_file_contents).result
-      config_file_contents = YAML.safe_load(config_file_contents, [], [], true)
+      config_file_contents = yaml_load(config_file_contents)
       config_file_contents[env].deep_symbolize_keys!
     rescue Errno::ENOENT
       raise "Missing config file: #{config_file}"
@@ -120,6 +120,12 @@ module Biran
         ext.prepend('.') unless ext.start_with?('.') || ext.empty?
         files_list[file][:extension] = ext
       end
+    end
+
+    def yaml_load data_content
+      # Ruby 3.1 with Psych 4 allows yaml-aliases only in direct manner
+      return YAML.safe_load(data_content, [], [], true) if defined?(Psych::VERSION) && Gem::Version.new(Psych::VERSION) < Gem::Version.new('4.0')
+      YAML.safe_load(data_content, aliases: true)
     end
 
     def filtered_config
