@@ -8,7 +8,7 @@ describe Biran::Configurinator do
     expect(subject.files_to_generate).to eql({my_config: {extension: ".yml"}})
   end
 
-  describe "psycho version" do
+  describe "psych version" do
     let(:data_content) { ERB.new(File.read("config/app_config.yml")).result }
 
     context "when psych version is < 4.0" do
