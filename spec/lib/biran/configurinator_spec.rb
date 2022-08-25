@@ -10,7 +10,7 @@ describe Biran::Configurinator do
 
   describe "psych version" do
     let(:data_content) { ERB.new(File.read("config/app_config.yml")).result }
-    let(:hash_content) { { "development" => {} } }
+    let(:hash_content) { { "development" => {}, "test" => {} } }
 
     context "when psych version is < 4.0" do
       before(:example) do
