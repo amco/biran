@@ -13,6 +13,10 @@ defaults: &defaults
 
 test:
   <<: *defaults
+  my_first_value: 11
+  nested_values:
+    <<: *nested_defaults
+    my_third_value: 13
 
 development:
   <<: *defaults
