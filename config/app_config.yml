@@ -5,9 +5,18 @@ defaults: &defaults
     files_to_generate:
       my_config:
         extension: '.yml'
+  my_first_value: 1
+  my_second_value: 2
+  nested_values: &nested_defaults
+    my_third_value: 3
+    my_fourth_value: 4
 
 test:
   <<: *defaults
 
 development:
   <<: *defaults
+  my_first_value: 11
+  nested_values:
+    <<: *nested_defaults
+    my_third_value: 13
