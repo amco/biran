@@ -3,8 +3,7 @@ os: linux
 cache: bundler
 language: ruby
 rvm:
-  - 2.5.0
-  - 2.5.9
+  - 2.6.0
   - 2.6.5
   - 2.6.10
   - 2.7.6
