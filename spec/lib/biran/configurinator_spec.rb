@@ -10,6 +10,7 @@ describe Biran::Configurinator do
 
   describe "psych version" do
     let(:data_content) { ERB.new(File.read("config/app_config.yml")).result }
+    let(:hash_content) { { "development" => {} } }
 
     context "when psych version is < 4.0" do
       before(:example) do
@@ -17,7 +18,7 @@ describe Biran::Configurinator do
       end
 
       it "calls right method" do
-        expect(YAML).to receive(:safe_load).with(data_content, [], [], true).and_call_original
+        expect(YAML).to receive(:safe_load).with(data_content, [], [], true).and_return(hash_content)
         subject.files_to_generate
       end
     end
@@ -28,7 +29,7 @@ describe Biran::Configurinator do
       end
 
       it "calls right method" do
-        expect(YAML).to receive(:safe_load).with(data_content, aliases: true).and_call_original
+        expect(YAML).to receive(:safe_load).with(data_content, aliases: true).and_return(hash_content)
         subject.files_to_generate
       end
     end
