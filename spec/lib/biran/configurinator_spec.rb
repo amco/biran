@@ -22,7 +22,7 @@ describe Biran::Configurinator do
       end
     end
 
-    context "when psych version is <> 4.0" do
+    context "when psych version is >= 4.0" do
       before(:example) do
         stub_const("Psych::VERSION", "4.0")
       end
