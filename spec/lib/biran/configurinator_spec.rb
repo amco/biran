@@ -29,7 +29,7 @@ describe Biran::Configurinator do
         stub_const("Psych::VERSION", "3.2")
       end
 
-      it "safe_laod should get correct arguments" do
+      it "will give safe_load correct arguments" do
         expect(YAML).to receive(:safe_load).with(data_content, [], [], true).and_return(hash_content)
         subject.files_to_generate
       end
@@ -40,7 +40,7 @@ describe Biran::Configurinator do
         stub_const("Psych::VERSION", "4.0")
       end
 
-      it "safe_laod should get correct arguments" do
+      it "will give safe_load correct arguments" do
         expect(YAML).to receive(:safe_load).with(data_content, aliases: true).and_return(hash_content)
         subject.files_to_generate
       end
