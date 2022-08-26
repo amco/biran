@@ -1,10 +1,13 @@
+dist: xenial
+os: linux
 cache: bundler
-sudo: false
 language: ruby
 rvm:
-  - 2.3.5
-  - 2.4.0
-  - 3.0.0
+  - 2.6.0
+  - 2.6.5
+  - 2.6.10
+  - 2.7.6
+  - 3.0.4
 branches:
   only:
     - /^\d+\.\d+$/

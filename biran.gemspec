@@ -14,6 +14,10 @@ Gem::Specification.new do |s|
   s.description = "Biran is the guy that will help you generate config files for your rail app."
   s.license     = "MIT"
 
+  s.metadata = {
+    "rubygems_mfa_required" => "true",
+  }
+
   s.files = Dir["{app,config,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
   s.executables = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
