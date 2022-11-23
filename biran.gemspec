@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "Helper for generating config generate tasks."
   s.description = "Biran is the guy that will help you generate config files for your rail app."
   s.license     = "MIT"
+  s.required_ruby_version = ">= 2.6.0"
 
   s.metadata = {
     "rubygems_mfa_required" => "true",
