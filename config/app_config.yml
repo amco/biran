@@ -7,9 +7,11 @@ defaults: &defaults
         extension: '.yml'
   my_first_value: 1
   my_second_value: 2
+  my_fifth_value: 5
   nested_values: &nested_defaults
     my_third_value: 3
     my_fourth_value: 4
+    my_sixth_value: 6
 
 test:
   <<: *defaults

@@ -46,4 +46,17 @@ describe Biran::Configurinator do
       end
     end
   end
+
+  describe "extra_config_file_contents" do
+    it "will load extra config file contents with suffix" do
+      allow_any_instance_of(described_class).to receive(:extra_config_suffix).and_return("test")
+      expect(subject.config[:my_fifth_value]).to eq(55)
+      expect(subject.config[:nested_values][:my_sixth_value]).to eq(66)
+    end
+
+    it "will load original file contents without suffix" do
+      expect(subject.config[:my_fifth_value]).to eq(5)
+      expect(subject.config[:nested_values][:my_sixth_value]).to eq(6)
+    end
+  end
 end

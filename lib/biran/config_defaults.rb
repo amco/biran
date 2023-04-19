@@ -54,6 +54,22 @@ module Biran
       ENV['BIRAN_LOCAL_CONFIG_FILENAME'] || app_config_defaults[:app][:local_config_filename] || configuration.local_config_filename
     end
 
+    def extra_config_suffix
+      ENV['BIRAN_EXTRA_CONFIG_SUFFIX'] || app_config_defaults[:app][:extra_config_suffix] || configuration.extra_config_suffix
+    end
+
+    def extra_config_file
+      File.join(configuration.config_dirname, app_config_filename.gsub(/\.yml$/, "_#{extra_config_suffix}.yml"))
+    end
+
+    def app_config_filename
+      configuration.config_filename
+    end
+
+    def app_config_file
+      File.join(configuration.config_dirname, app_config_filename)
+    end
+
     def vhost_public_dirname
       ENV['BIRAN_VHOST_PUBLIC_DIRNAME'] || app_config_defaults[:app][:vhost_public_dirname]
     end

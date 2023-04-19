@@ -6,7 +6,8 @@ module Biran
 
     attr_writer :config_filename, :local_config_filename, :db_config_filename,
                 :secrets_filename, :config_dirname, :use_capistrano, :db_config,
-                :secrets, :base_path, :app_env, :base_dir, :bindings, :app_setup_blocks
+                :secrets, :base_path, :app_env, :base_dir, :bindings, :app_setup_blocks,
+                :extra_config_suffix
 
     attr_accessor :shared_dir
 
@@ -68,6 +69,10 @@ module Biran
 
     def bindings
       @bindings ||= %i[db_config]
+    end
+
+    def extra_config_suffix
+      @extra_config_suffix ||= 'extras'.freeze
     end
 
     def base_path
