@@ -92,6 +92,7 @@ the list of things you can configure are:
 :local_config_filename,
 :db_config_file_name,
 :secrets_filename,
+:extra_config_suffix,
 :config_dirname,
 :base_path,
 :shared_dir,
@@ -144,6 +145,16 @@ Default: secrets
 Available in: config file, initializer**
 
 Generally no need to change, but here in case you want to. Default is `secrets.yml`
+
+### extra_config_suffix
+**Type: string  
+Default: extras  
+Available in: environment variable, config_file, initializer**
+
+Sets the suffix to be applied to an extra config file you may want to load. The suffix is appended to the value of the config_filename. The default value will be `app_config_extras.yml`.
+This file gets loaded just before the local config file and can be used to provide additional configuration based stored in a second file. There are times when you may want to organize the
+configuration based on sub grouping that the yaml just doesn't allow easily.  
+Use cases might include grouping config based on a location, type of host, or even for testing purposes.
 
 ### config_dirname
 **Type: string  
