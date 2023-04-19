@@ -130,7 +130,6 @@ module Biran
 
     def yaml_load data_content
       # Ruby 3.1 with Psych 4 allows yaml-aliases only in direct manner
-      return YAML.safe_load(data_content, [], [], true) if defined?(Psych::VERSION) && Gem::Version.new(Psych::VERSION) < Gem::Version.new('4.0')
       YAML.safe_load(data_content, aliases: true)
     end
 
