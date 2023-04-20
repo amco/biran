@@ -40,7 +40,8 @@ Dir.glob('lib/tasks/*.rake').each {|r| import r}
 # Configuration
 
 You can set where your config files are, rails end and other stuff in a file like `config/initializers/biran.rb`
-You can also set options in `config/app_config.yml` in the `app` block. This list will be loaded last and override anything set in the initializer.
+You can also set options in `config/app_config.yml` in the `app` block. This list will be loaded last and override anything set in the initializer. All string
+input is sanitized to remove special characters that don't play well with file system paths. Any special haracters found are replaced with a '-'.
 
 Config file example:
 ```
