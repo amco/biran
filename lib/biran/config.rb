@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'singleton'
 
 module Biran
@@ -14,7 +15,7 @@ module Biran
     def app_env
       return @app_env if @app_env
       @app_env = Rails.env if defined? Rails
-      @app_env ||= 'development'.freeze
+      @app_env ||= 'development'
     end
 
     def base_dir
@@ -22,27 +23,27 @@ module Biran
     end
 
     def config_filename
-      @config_filename ||= 'app_config.yml'.freeze
+      @config_filename ||= 'app_config.yml'
     end
 
     def local_config_filename
-      @local_config_filename ||= 'local_config.yml'.freeze
+      @local_config_filename ||= 'local_config.yml'
     end
 
     def db_config_filename
-      @db_config_filename ||= 'db_config.yml'.freeze
+      @db_config_filename ||= 'db_config.yml'
     end
 
     def secrets_filename
-      @secrets_filename ||= 'secrets.yml'.freeze
+      @secrets_filename ||= 'secrets.yml'
     end
 
     def config_dirname
-      @config_dirname ||= 'config'.freeze
+      @config_dirname ||= 'config'
     end
 
     def vhost_public_dirname
-      @vhost_public_dirname ||= 'public'.freeze
+      @vhost_public_dirname ||= 'public'
     end
 
     def use_capistrano
@@ -64,7 +65,7 @@ module Biran
     end
 
     def app_setup_blocks
-      @app_setup_blocks ||= %i[app].freeze
+      @app_setup_blocks ||= %i[app]
     end
 
     def bindings
@@ -72,7 +73,7 @@ module Biran
     end
 
     def extra_config_suffix
-      @extra_config_suffix ||= 'extras'.freeze
+      @extra_config_suffix ||= 'extras'
     end
 
     def base_path
