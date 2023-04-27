@@ -1,0 +1,10 @@
+defaults: &defaults
+  my_fifth_value: 55
+  nested_values:
+    my_sixth_value: 66
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults

@@ -17,6 +17,11 @@ describe Biran do
       subject.configure { |config| config.base_path = 'path/to/root/' }
       expect(described_class.config.base_path).to eq 'path/to/root/'
     end
+
+    it 'extra_config_suffix' do
+      subject.configure { |config| config.extra_config_suffix = 'testing' }
+      expect(described_class.config.extra_config_suffix).to eq 'testing'
+    end
   end
 
   it 'extension for config tasks contain period' do

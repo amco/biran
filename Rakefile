@@ -22,10 +22,10 @@ begin
   task("spec").clear
 
   RSpec::Core::RakeTask.new(:spec) do |t|
-    t.rspec_opts = "--format RSpec::TapY | tapout runtime"
+    t.rspec_opts = "--format documentation"
   end
 
-  task :default => :spec
+  task default: :spec
 rescue LoadError
   raise 'No rspec available'
 end

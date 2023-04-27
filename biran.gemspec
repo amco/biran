@@ -29,6 +29,4 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rails", "~> 5.0", ">= 5.0.7"
   s.add_development_dependency "bundler", "~> 2.1"
   s.add_development_dependency 'rspec', '~> 3.7'
-  s.add_development_dependency 'tapout', '~> 0.4'
-  s.add_development_dependency 'rspec-ontap', '~> 0.3'
 end
