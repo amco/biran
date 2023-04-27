@@ -18,4 +18,5 @@ describe Biran::Config do
   it { is_expected.to respond_to :bindings }
   it { is_expected.to respond_to :base_path }
   it { is_expected.to respond_to :shared_dir }
+  it { is_expected.to respond_to :extra_config_suffix }
 end

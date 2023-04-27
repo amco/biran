@@ -24,26 +24,22 @@ describe Biran::Configurinator do
       expect(subject.config[:nested_values][:my_fourth_value]).to eq(4)
     end
 
-    context "when psych version is < 4.0" do
-      before(:example) do
-        stub_const("Psych::VERSION", "3.2")
-      end
+    it "will give safe_load correct arguments" do
+      expect(YAML).to receive(:safe_load).with(data_content, aliases: true).and_return(hash_content)
+      subject.files_to_generate
+    end
+  end
 
-      it "will give safe_load correct arguments" do
-        expect(YAML).to receive(:safe_load).with(data_content, [], [], true).and_return(hash_content)
-        subject.files_to_generate
-      end
+  describe "extra_config_file_contents" do
+    it "will load extra config file contents with suffix" do
+      allow_any_instance_of(described_class).to receive(:extra_config_suffix).and_return("test")
+      expect(subject.config[:my_fifth_value]).to eq(55)
+      expect(subject.config[:nested_values][:my_sixth_value]).to eq(66)
     end
 
-    context "when psych version is >= 4.0" do
-      before(:example) do
-        stub_const("Psych::VERSION", "4.0")
-      end
-
-      it "will give safe_load correct arguments" do
-        expect(YAML).to receive(:safe_load).with(data_content, aliases: true).and_return(hash_content)
-        subject.files_to_generate
-      end
+    it "will load original file contents without suffix" do
+      expect(subject.config[:my_fifth_value]).to eq(5)
+      expect(subject.config[:nested_values][:my_sixth_value]).to eq(6)
     end
   end
 end
