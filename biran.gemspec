@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "Helper for generating config generate tasks."
   s.description = "Biran is the guy that will help you generate config files for your rail app."
   s.license     = "MIT"
-  s.required_ruby_version = ">= 2.6.0"
+  s.required_ruby_version = ">= 2.7.0"
 
   s.metadata = {
     "rubygems_mfa_required" => "true",
@@ -29,4 +29,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rails", "~> 5.0", ">= 5.0.7"
   s.add_development_dependency "bundler", "~> 2.1"
   s.add_development_dependency 'rspec', '~> 3.7'
+  s.add_development_dependency 'nokogiri', '~> 1.15'
 end

@@ -1,14 +1,15 @@
 dist: xenial
+bundler_args: --jobs=3 --retry=3
 os: linux
 cache: bundler
 language: ruby
 rvm:
-  - 2.6.0
-  - 2.6.5
-  - 2.6.10
   - 2.7.6
   - 3.0.4
   - 3.1.2
+  - 3.2.2
+before_install:
+  - bundle config set deployment 'true'
 branches:
   only:
     - /^\d+\.\d+$/

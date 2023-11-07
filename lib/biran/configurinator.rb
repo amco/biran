@@ -73,7 +73,7 @@ module Biran
 
     def base_db_config
       return @base_db_config if @base_db_config
-      return @base_db_config = {} unless File.exists? default_db_config_file
+      return @base_db_config = {} unless File.exist? default_db_config_file
       @base_db_config ||= process_config_file(default_db_config_file)
     end
 
@@ -104,18 +104,18 @@ module Biran
 
     def local_config_file_contents
       return @local_config_contents if @local_config_contents
-      return @local_config_conents = {} unless File.exists? local_config_file
+      return @local_config_conents = {} unless File.exist? local_config_file
       @local_config_contents = process_config_file(local_config_file)
     end
 
     def get_secrets_content(secrets_file)
-      return {} unless File.exists? secrets_file
+      return {} unless File.exist? secrets_file
       process_config_file secrets_file
     end
 
     def extra_config_file_contents
       return @extra_config_contents if @extra_config_contents
-      return @extra_config_contents = {} unless File.exists? extra_config_file
+      return @extra_config_contents = {} unless File.exist? extra_config_file
       @extra_config_contents = process_config_file(extra_config_file)
     end
 
