@@ -13,7 +13,7 @@ before_install:
 branches:
   only:
     - /^\d+\.\d+$/
-    - master
+    - main
 jobs:
   include:
     - stage: test
